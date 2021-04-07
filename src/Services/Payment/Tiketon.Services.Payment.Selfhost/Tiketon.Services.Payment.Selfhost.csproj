@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.1.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.32.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+	  <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus\EventBus.csproj" />
+	  <ProjectReference Include="..\Tiketon.Services.Payment.Application\Tiketon.Services.Payment.Application.csproj" />
+	  <ProjectReference Include="..\Tiketon.Services.Payment.Controllers\Tiketon.Services.Payment.Controllers.csproj" />
+	  <ProjectReference Include="..\Tiketon.Services.Payment.Infrastucture\Tiketon.Services.Payment.Infrastucture.csproj" />
+	</ItemGroup>
+
+
+</Project>

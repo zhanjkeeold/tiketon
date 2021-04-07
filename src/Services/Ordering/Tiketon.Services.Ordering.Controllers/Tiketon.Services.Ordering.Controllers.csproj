@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tiketon.Services.Ordering.Application\Tiketon.Services.Ordering.Application.csproj" />
+      <ProjectReference Include="..\Tiketon.Services.Ordering.Domain\Tiketon.Services.Ordering.Domain.csproj" />
+      <ProjectReference Include="..\Tiketon.Services.Ordering.Models\Tiketon.Services.Ordering.Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    </ItemGroup>
+
+</Project>

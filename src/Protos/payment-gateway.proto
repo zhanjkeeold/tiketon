@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Tiketon.Grpc";
+
+package API;
+
+service ExternalPaymentGateway {
+    rpc PerformPayment(PaymentInfoRequest) returns (PaymentInfoResponse) {}
+}
+
+message PaymentInfoRequest {
+    int32 Total = 1;
+    string CardNumber = 2;
+    string CardName = 3;
+    string CardExpiration = 4;
+}
+
+message PaymentInfoResponse {
+    bool Status = 1;
+}

@@ -1,0 +1,87 @@
+﻿@model Tiketon.Web.Models.View.BasketViewModel
+
+<h2>Корзина</h2>
+
+<table class="table">
+    <thead>
+    <tr class="columnHeader">
+        <th>НАЗВАНИЕ</th>
+        <th>ДАТА</th>
+        <th>ЦЕНА ЗА ЕДИНИЦУ</th>
+        <th>КОЛИЧЕСТВО</th>
+        <th>ИТОГО</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var line in Model.BasketLines)
+    {
+        <tr>
+            <td>@line.EventName</td>
+            <td>@line.Date.DateTime.ToShortDateString()</td>
+            <td class="bold">$@line.Price</td>
+            <td>
+                <form asp-action="UpdateLine">
+                    <input type="hidden" name="LineId" value="@line.LineId"/>
+                    <select name="TicketAmount" class="w-25" asp-for="@line.Quantity">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <button type="submit" class="filterButton">Обновить</button>
+                </form>
+            </td>
+            <td class="bold">@(line.Price * line.Quantity) тг</td>
+            <td>
+                <a asp-action="RemoveLine" asp-route-lineId="@line.LineId">
+                    <img class="cancelIcon" src="~/img/times.svg"/>
+                </a>
+            </td>
+        </tr>
+    }
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="4" class="text-right bold big">Скидка:</td>
+        <td class="text-right bold big">
+            @(Model.Discount.ToString() + " тг")
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="text-right bold big">Итого:</td>
+        <td class="text-right bold big">
+            @((Model.ShoppingCartTotal - Model.Discount).ToString() + " тг")
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="row">
+    <div class="col-9">
+        <h4>Введите код купона! (Ten, Twenty, AlmostFree)</h4>
+
+        <form asp-action="ApplyDiscountCode" method="post" class="form-inline" role="form">
+
+            <label class="sr-only">Код</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" name="Code" placeholder="Код">
+            <input type="submit" class="filterButton" value="Применить"/>
+
+        </form>
+    </div>
+    <div class="col-3">
+        <div class="text-center">
+            <a class="btn btn-primary" asp-controller="Basket" asp-action="Checkout">Оформить заказ!</a>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="mt-2">
+    <a asp-controller="Catalog" asp-action="Index">
+        <img class="backIcon" src="~/img/arrow-down.svg"/> Вернуться в каталог
+    </a>
+</div>

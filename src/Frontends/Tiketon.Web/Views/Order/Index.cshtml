@@ -1,0 +1,27 @@
+﻿@model Tiketon.Web.Models.View.OrderViewModel
+
+
+<h2>Ваши заказы</h2>
+
+<table class="table">
+    <thead>
+    <tr class="columnHeader">
+        <th>ID</th>
+        <th>ДАТА</th>
+        <th>КОЛИЧЕСТВО</th>
+        <th>СТАТУС</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var line in Model.Orders)
+    {
+        <tr>
+            <td>@line.Id</td>
+            <td>@line.OrderPlaced.ToShortDateString()</td>
+            <td class="bold">@line.OrderTotal тг</td>
+            <td class="bold">@line.OrderPaid</td>
+        </tr>
+    }
+    </tbody>
+</table>

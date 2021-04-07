@@ -1,0 +1,18 @@
+﻿@model Tiketon.Web.Models.Api.Event
+<tr>
+    <td>
+        <img class="artistPic" src="@Model.ImageUrl" alt="Artist pic"/>
+    </td>
+    <td>
+        @Model.Date.ToShortDateString()
+    </td>
+    <td>
+        @Model.Name
+    </td>
+    <td class="bold big">
+        @Model.Price тг
+    </td>
+    <td>
+        <a class="btn-primary" type="button" asp-action="Detail" asp-route-eventId="@Model.EventId">Детали</a>
+    </td>
+</tr>
